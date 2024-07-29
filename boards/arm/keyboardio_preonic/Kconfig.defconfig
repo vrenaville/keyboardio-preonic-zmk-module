@@ -28,4 +28,10 @@ config ZMK_BLE
 config ZMK_USB
 	default y
 
+config I2C
+	default y
+
+config ZMK_MAX17048
+	default y
+
 endif # BOARD_KEYBOARDIO_PREONIC
