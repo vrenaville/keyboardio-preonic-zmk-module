@@ -7,6 +7,7 @@
 /dts-v1/;
 #include <nordic/nrf52840_qiaa.dtsi>
 #include <dt-bindings/zmk/matrix_transform.h>
+#include "keyboardio_preonic-layouts.dtsi"
 
 / {
 	model = "preonic";
@@ -18,7 +19,7 @@
 		zephyr,flash = &flash0;
 		zmk,battery = &fuelgauge;
 		zmk,kscan = &kscan;
-		zmk,matrix_transform = &mit_transform;
+        zmk,physical-layout = &mit_layout;
 	};
 
 	ortho_transform: ortho_transform {
@@ -134,7 +135,7 @@
 
 zephyr_udc0: &usbd {
 	status = "okay";
-}; 
+};
 
 &flash0 {
 	/*
@@ -145,19 +146,19 @@ zephyr_udc0: &usbd {
 		compatible = "fixed-partitions";
 		#address-cells = <1>;
 		#size-cells = <1>;
-		
+
 		sd_partition: partition@0 {
 		    reg = <0x00000000 0x00026000>;
 		};
 		code_partition: partition@26000 {
 		    reg = <0x00026000 0x000c6000>;
 		};
-		
+
 		/*
 		 * The flash starting at 0x000ec000 and ending at
 		 * 0x000f3fff is reserved for use by the application.
 		 */
-		
+
 		/*
 		 * Storage partition will be used by FCB/LittleFS/NVS
 		 * if enabled.
@@ -165,7 +166,7 @@ zephyr_udc0: &usbd {
 		storage_partition: partition@ec000 {
 		    reg = <0x000ec000 0x00008000>;
 		};
-		
+
 		boot_partition: partition@f4000 {
 		    reg = <0x000f4000 0x0000c000>;
 		};
