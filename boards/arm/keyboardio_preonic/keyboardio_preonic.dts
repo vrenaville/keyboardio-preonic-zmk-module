@@ -83,6 +83,40 @@
 			, <&gpio0 6  (GPIO_ACTIVE_HIGH | GPIO_PULL_DOWN)>
 			;
 	};
+
+    // The pinout for the keyboard suggests that there are 3 available encoders.
+    // However, the physical keyboard only has one...hmm.
+
+    encoder1: encoder1 {
+        compatible = "alps,ec11";
+        a-gpios = <&gpio1 11 (GPIO_ACTIVE_LOW | GPIO_PULL_UP)>;
+        b-gpios = <&gpio1 10 (GPIO_ACTIVE_LOW | GPIO_PULL_UP)>;
+        steps = <24>;
+        status = "disabled";
+    };
+
+    encoder2: encoder2 {
+        compatible = "alps,ec11";
+        a-gpios = <&gpio1 15 (GPIO_ACTIVE_LOW | GPIO_PULL_UP)>;
+        b-gpios = <&gpio0 3  (GPIO_ACTIVE_LOW | GPIO_PULL_UP)>;
+        steps = <24>;
+        status = "disabled";
+    };
+
+    encoder3: encoder3 {
+        compatible = "alps,ec11";
+        a-gpios = <&gpio0 2  (GPIO_ACTIVE_LOW | GPIO_PULL_UP)>;
+        b-gpios = <&gpio0 28 (GPIO_ACTIVE_LOW | GPIO_PULL_UP)>;
+        steps = <24>;
+        status = "okay";
+    };
+
+    sensors {
+        compatible = "zmk,keymap-sensors";
+        status = "okay";
+        sensors = <&encoder3>;
+        triggers-per-rotation = <12>;
+    };
 };
 
 &pinctrl {
@@ -172,3 +206,4 @@ zephyr_udc0: &usbd {
 		};
 	};
 };
+
