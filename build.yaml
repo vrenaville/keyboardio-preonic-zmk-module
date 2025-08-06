@@ -19,3 +19,4 @@
 ---
 include:
   - board: keyboardio_preonic
+    snippet: studio-rpc-usb-uart
