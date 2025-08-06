@@ -86,8 +86,9 @@
 			;
 	};
 
-    // The pinout for the keyboard suggests that there are 3 available encoders.
-    // However, the physical keyboard only has one...hmm.
+    // There are 3 available spots where an encoder can be installed.
+    // However, the default factory layout only uses one, so by default,
+    // only one is enabled here.
 
     encoder1: encoder1 {
         compatible = "alps,ec11";
